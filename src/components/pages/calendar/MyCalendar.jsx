@@ -2,13 +2,14 @@ import React, {useContext} from 'react';
 import styles from "./MyCalendar.module.css";
 import MyPersonalCalendar from "../shared/MyPersonalCalendar";
 import EventContext from "../../../context/EventContext";
+import AgilityApi from '../../../AgilityApi';
 import MonthlyEvents from './MonthlyEvents';
 import WeeklyEvents from "./WeeklyEvents";
 import Event from "../home/Event";
 
 const MyCalendar = () => {
 
-	const {events, currentView} = useContext(EventContext);
+	const {events, currentView, removeEvent} = useContext(EventContext);
 	
 	const updateEvent = () => {
 		console.log('updating event');
@@ -18,11 +19,20 @@ const MyCalendar = () => {
 		console.log('adding event');
 	}
 
+  const handleRemoveEvent = async(id) => {
+		try{
+			await AgilityApi.removeEvent(id);
+			removeEvent(id);
+		} catch (err){
+			console.log(err);
+		}
+	}
+
 	const showEventsByView = () => {
 			if (currentView === 'month'){
 				return (<>
 					<h6>Monthly Events</h6>
-					<MonthlyEvents events={events}/>
+					<MonthlyEvents events={events} removeEvent={handleRemoveEvent}/>
 				</>)
 			} else if (currentView === 'day'){
 				return (
@@ -30,7 +40,7 @@ const MyCalendar = () => {
 					<h6>Daily Events</h6>
 					{events.length 
 						? events.map((item, idx) => 
-							<div key={idx} ><Event item={item} idx={idx} /></div>
+							<div key={idx} ><Event item={item} idx={idx} removeEvent={handleRemoveEvent}/></div>
 						)
 					: 'Nothing scheduled for today...'}
 					</>
@@ -38,7 +48,7 @@ const MyCalendar = () => {
 			} else if (currentView === 'week'){
 				return (<>
 					<h6>Weekly Events</h6>
-					<WeeklyEvents events={events}/>
+					<WeeklyEvents events={events} removeEvent={handleRemoveEvent}/>
 				</>)
 			}
 	}

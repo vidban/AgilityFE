@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Event from "../home/Event";
 import moment from "moment";
 
-const MonthlyEvents = ({events}) => {
+const MonthlyEvents = ({events, removeEvent}) => {
 	
 
 	const [monthlyEvents, setMonthlyEvents] = useState(null);
@@ -38,7 +38,7 @@ const MonthlyEvents = ({events}) => {
 						<div key={iidx} className="d-flex p-1 mb-1 justify-content-center align-items-start border border-secondary">
 							<div className='d-flex flex-column col-2'><h6>{day}</h6><h6>{date}</h6></div>
 							<div className="col-10 d-flex flex-column">
-								{monthlyEvents[key].map((evt, eidx) => <div key={eidx}><Event item={evt} idx={eidx}/></div>
+								{monthlyEvents[key].map((evt, eidx) => <div key={eidx}><Event item={evt} idx={eidx} removeEvent={removeEvent}/></div>
 							)}
 							</div>
 							
