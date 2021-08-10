@@ -6,7 +6,6 @@ import MyCalendar from "../pages/calendar/MyCalendar";
 import Home from "../pages/home/Home";
 import NotFound from "./NotFound";
 import PrivateRoute from "./PrivateRoute";
-import EventProvider from "../../context/EventProvider";
 
 const Routes = () => {
 
@@ -14,14 +13,14 @@ const Routes = () => {
 		<Switch>
 		  <Route exact path='/' component={Reroute} />
 		  <Route exact path='/login' component={LoginSignUp} />
-			<EventProvider >
+			
 				<PrivateRoute exact path="/home">
 					<Home />
 				</PrivateRoute>
 				<PrivateRoute exact path="/calendar">
 					<MyCalendar />
 				</PrivateRoute>
-			</EventProvider>
+			
 			<Route component={NotFound} />
 		</Switch>
 	);

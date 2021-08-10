@@ -3,22 +3,6 @@ import {Modal, Button, Form, Row, Col} from 'react-bootstrap';
 import moment from "moment";
 
 const AddEventModal = ({day=null, show, setShow}) => {
-	// const [event, setEvent] = useState({
-	// 	type: "calendar-event",
-	// 	title: "",
-	// 	description: "",
-	// 	date: "",
-	// 	allday: false,
-	// 	start: {
-	// 	  date: null,
-	// 	  time: { hours: null, minutes: null},
-	// 	},
-	// 	end: {
-	// 	  date: null,
-	// 	  time: { hours: null, minutes: null},
-	// 	},
-	//   });
-
 	const handleShow = () => {
 		setShow(false);
 	}

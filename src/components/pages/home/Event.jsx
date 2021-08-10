@@ -20,8 +20,13 @@ const Event = ({item, idx, removeEvent}) => {
 	let numT;
 	useEffect(() => {
 		const getTodos = async() => {
-			let todos = await AgilityApi.getTodos(item.id);
-			setTodos(todos);
+      try {
+        let todos = await AgilityApi.getTodos(item.id);
+        setTodos(todos);
+      } catch (error) {
+        console.log(error);
+      }
+		
 		}
 		getTodos();
 	}, [item])
@@ -69,9 +74,14 @@ const Event = ({item, idx, removeEvent}) => {
 	}
 
 	const handleTodoToggle = async (id) => {
-		await AgilityApi.updateTodo(id);
-		setTodos((todos) => todos.map(
-			(t) => t.id === id ? {...t, completed: !t.completed} : t))
+    try {
+      await AgilityApi.updateTodo(id);
+		  setTodos((todos) => todos.map(
+			(t) => t.id === id ? {...t, completed: !t.completed} : t));
+    } catch (error) {
+      console.log(error);
+    }
+		
 	}
 
 	const handleChangeTodoView = (e) => {
@@ -100,8 +110,13 @@ const Event = ({item, idx, removeEvent}) => {
 	}
 
 	const handleClearCompleted = async () => {
-		let todos = await AgilityApi.clearTodos(item.id);
-		setTodos(todos);
+    try {
+      let todos = await AgilityApi.clearTodos(item.id);
+		  setTodos(todos);
+    } catch (error) {
+      console.log(error);
+    }
+		
 	}
 
 

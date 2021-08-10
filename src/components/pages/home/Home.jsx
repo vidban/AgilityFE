@@ -17,12 +17,17 @@ const Home = () => {
 	useEffect (() => {
 		const getLocation = async () => {
 					
-			navigator.geolocation.getCurrentPosition(async (position) => {
+			await navigator.geolocation.getCurrentPosition(async (position) => {
 				let latitude = position.coords.latitude;
 				let longitude = position.coords.longitude;
 		
-				const {current} = await AgilityApi.getWeather(latitude,longitude);
-				setWeather({text: current.condition.text, icon: current.condition.icon, temp: current.temp_f});
+        try {
+          const {current} = await AgilityApi.getWeather(latitude,longitude);
+				  setWeather({text: current.condition.text, icon: current.condition.icon, temp: current.temp_f});
+        } catch (error) {
+          console.log(error);
+        }
+				
 	
 			});
 		}

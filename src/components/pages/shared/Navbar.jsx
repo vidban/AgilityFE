@@ -16,9 +16,9 @@ const Navbar = () => {
 			<li className="nav-item">
 				<NavLink className='nav-link' to='/calendar'>My Calendar</NavLink>
 			</li>
-			<li className="nav-item">
+			{/* <li className="nav-item">
 				<NavLink className='nav-link' to='/profile'>Profile</NavLink>
-			</li>
+			</li> */}
 			<li className="nav-item">
 				<NavLink className='nav-link' exact to='/' onClick={handleLogOut}>Logout</NavLink>
 			</li>

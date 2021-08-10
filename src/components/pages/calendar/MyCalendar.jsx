@@ -49,7 +49,7 @@ const MyCalendar = () => {
 				<MyPersonalCalendar chosenView={currentView} events={events} updateEvent={updateEvent} addEvent={addEvent} myToolbar={true}/>
 			</section>
 			<section className={`col-6 ${styles.dayevents}`}>
-				<div className="p-0 col-11">
+				<div className="pt-4 col-11">
 					{showEventsByView()}
 				</div>
 			</section>
