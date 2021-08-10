@@ -1,0 +1,24 @@
+.Calendar{
+	min-height: 100vh;
+}
+
+.DayPicker{
+	font-size: 2.5em !important;
+}
+
+.dayevents{
+	height: 100%;
+}
+
+.addevents{
+	background-color: saddlebrown;
+	color: #fff;
+	font-size: 1.2em;
+	border-radius: 10px;
+}
+
+@media only screen and (max-width:  500px){
+	.DayPicker{
+		font-size: 1rem !important;
+	}
+}
