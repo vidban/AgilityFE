@@ -50,22 +50,27 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 	}
 
 	const moveEvent = ({ event, start, end, isAllDay: droppedOnAllDaySlot }) => {
-
-		let allDay = event.allDay
+		let allDay = event.allday
 	
-		if (!event.allDay && droppedOnAllDaySlot) {
+		if (!event.allday && droppedOnAllDaySlot) {
 			allDay = true
-		} else if (event.allDay && !droppedOnAllDaySlot) {
+		} else if (event.allday && !droppedOnAllDaySlot) {
 			allDay = false
 		}
+
+    event.start = start;
+    event.end = end;
+    event.allday = allDay;
+    updateEvent(event)
+
+		// const nextEvents = events.map(existingEvent => {
+		// 	return existingEvent.id === event.id
+		// 	? { ...existingEvent, start, end, allDay }
+		// 	: existingEvent
+		// })
+		// updateEvent(nextEvents);
 	
-		const nextEvents = events.map(existingEvent => {
-			return existingEvent.id === event.id
-			? { ...existingEvent, start, end, allDay }
-			: existingEvent
-		})
-	
-		updateEvent(nextEvents);
+
 
 		// alert(`${event.title} was dropped onto ${updatedEvent.start}`)
 	}
@@ -98,7 +103,7 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 				allDay: slots.length===1,
 				start,
 				end,
-				color: "colors[Math.floor(Math.random()*colors.length)]"
+				color: colors[Math.floor(Math.random()*colors.length)]
 			}
 			if (title)
 				addEvent(hour);
@@ -114,9 +119,9 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 		handleSetCurrentDate(date);
 	}
 
-	const handleDrillDown = () => {
-		return;
-	}
+	// const handleDrillDown = () => {
+	// 	return;
+	// }
 
 	return (
 		<div>

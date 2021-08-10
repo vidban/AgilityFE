@@ -72,6 +72,11 @@ class AgilityApi {
 		return event;
 	}
 
+  static async updateEvent(userId, data){
+		let {event} = await this.request(`events/${userId}/update`, data, 'patch');
+		return event;
+	}
+
 	static async removeEvent(eventId){
 		let res = await this.request(`events/${eventId}/remove`, {} , 'delete');
 		return res.message;

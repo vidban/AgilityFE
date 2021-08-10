@@ -10,6 +10,7 @@ const EventProvider = ({ children }) => {
 	const [events, setEvents] = useState([]);
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const [currentView, setCurrentView] = useState('day');
+  const [modifyEvent, setModifyEvent] = useState('false');
 
 	const sortDayEvents = (events => {
 		events.sort((a,b) => a.start.getHours()-b.start.getHours());
@@ -57,12 +58,13 @@ const EventProvider = ({ children }) => {
 					}
 					
 					setEvents(events);
+          setModifyEvent(false);
 			} catch (error) {
 					console.log(error);
 			}
 		};
 		data();
-	},[currentUser, currentDate, setEvents, currentView])
+	},[currentUser, currentDate, setEvents, currentView, modifyEvent])
 
 	const addEvent = async (newEvent) => {
 		try {
@@ -81,9 +83,12 @@ const EventProvider = ({ children }) => {
 		}
 	}
 
-	const updateEvent = async (events) => {
-		sortEvents(events);
-		setEvents(events);
+	const updateEvent = async (event) => {
+		// sortEvents(events);
+		// setEvents(events);
+    await AgilityApi.updateEvent(currentUser.id,event);
+    setModifyEvent('true');
+
 	}
 
 	const removeEvent =async(id) => {
