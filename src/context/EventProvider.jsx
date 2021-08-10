@@ -60,7 +60,7 @@ const EventProvider = ({ children }) => {
 					setEvents(events);
           setModifyEvent(false);
 			} catch (error) {
-					console.log(error);
+					// console.log(error);
 			}
 		};
 		data();

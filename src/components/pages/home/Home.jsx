@@ -8,7 +8,7 @@ import moment from 'moment';
 
 
 const Home = () => {
-
+ 
 	const {events,handleSetCurrentDate, removeEvent, changeView} = useContext(EventContext);
 
 	const [weather,setWeather] = useState({text:null, icon:null, temp:null})
@@ -16,20 +16,21 @@ const Home = () => {
 
 	useEffect (() => {
 		const getLocation = async () => {
-					
-			await navigator.geolocation.getCurrentPosition(async (position) => {
-				let latitude = position.coords.latitude;
-				let longitude = position.coords.longitude;
-		
-        try {
-          const {current} = await AgilityApi.getWeather(latitude,longitude);
-				  setWeather({text: current.condition.text, icon: current.condition.icon, temp: current.temp_f});
-        } catch (error) {
-          console.log(error);
-        }
-				
-	
-			});
+      try {
+        await navigator.geolocation.getCurrentPosition(async (position) => {
+          let latitude = position.coords.latitude;
+          let longitude = position.coords.longitude;
+        
+          try {
+            const {current} = await AgilityApi.getWeather(latitude,longitude);
+            setWeather({text: current.condition.text, icon: current.condition.icon, temp: current.temp_f});
+          } catch (error) {
+            console.log(error);
+          }
+        });
+    }catch (error) {
+        console.log(error);
+      }
 		}
 		getLocation();
 		handleSetCurrentDate(new Date());
