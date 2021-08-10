@@ -1,7 +1,7 @@
 .Home{
 	min-width: 100vw;
 	min-height: 95vh;
-	background-color:#DFDBE5;
+	background-color:beige;
 	position: relative
 }
 
@@ -44,6 +44,8 @@
 	border: 2px solid lightgray;
 	border-radius: 15px;
 	position: relative;
+  background-color: #fff;
+	box-shadow: 1px 2px 2px slategray;
 }
 
 .menu{

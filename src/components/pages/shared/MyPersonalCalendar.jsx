@@ -86,6 +86,7 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 	const handleSelect = ({ start, end ,slots}) => {
 		if (dView === 'month'){
 			handleSetCurrentDate(start);
+      changeView('day');
 		}
 
 		if (dView === 'day'){
@@ -97,7 +98,7 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 				allDay: slots.length===1,
 				start,
 				end,
-				color: colors[Math.floor(Math.random()*colors.length)]
+				color: "colors[Math.floor(Math.random()*colors.length)]"
 			}
 			if (title)
 				addEvent(hour);
@@ -141,7 +142,6 @@ const MyPersonalCalendar = ({ chosenView, myToolbar}) => {
 				onSelectEvent={(e)=> alert(e.title)}
 				onNavigate={handleNavigate}
 				toolbar={myToolbar}
-				onDrillDown={handleDrillDown}
 			/>
 		</div>
 	)
