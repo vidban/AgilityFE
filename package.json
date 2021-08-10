@@ -24,8 +24,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"npm run dev\" \"npm run server\"",
-    "dev": "react-scripts start",
+    "dev": "concurrently --kill-others \"npm run dev\" \"npm run server\"",
+    "start": "react-scripts start",
     "server": "nodemon -e html/css/js ../backend/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
